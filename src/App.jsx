@@ -1,10 +1,15 @@
+import HomePage from './pages/HomePage'
+import DetailsPage from './pages/DetailsPage'
+import NavBar from './components/NavBar'
+
 import './App.css'
 
-function App() {
-  
+function App() {  
   return (
     <div className="App">
-      hello world
+      <NavBar />
+      <HomePage />
+      <DetailsPage />
     </div>
   )
 }
