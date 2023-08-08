@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   cities: [],
@@ -18,3 +18,4 @@ const staticCitiesSlice = createSlice({
 });
 
 export const { testFunction } = staticCitiesSlice.actions;
+export default staticCitiesSlice.reducer;
