@@ -7,25 +7,24 @@ const initialState = {
 };
 
 const GEOCODE_API = 'https://api.openweathermap.org/geo/1.0/direct?';
-const HOURLY_FORECAST = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?';
+// const HOURLY_FORECAST = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?';
 const API_KEY = "bb97736519c9fc5db2374f27ed914c13";
 
 export const geoCode = createAsyncThunk('staticCities/geoCode', async (city) => {
   try {
     const response = await fetch(`${GEOCODE_API}q=${city}&limit=5&appid=${API_KEY}`);
     const data = await response.json();
-    console.log(data);
     const uniqueCountries = {};
-    const uniqueData = [];
+    const uniqueCities = [];
 
     data.forEach(item => {
       if (!uniqueCountries[item.country]) {
         uniqueCountries[item.country] = true;
-        uniqueData.push(item);
+        uniqueCities.push(item);
       }
     });
-    console.log(uniqueData);
-    return { city, country: data[0].country, lat: data[0].lat, lon: data[0].lon };
+    console.log(uniqueCities);
+    return uniqueCities;
   } catch (error) {
     throw Error(error);
   }
@@ -43,7 +42,7 @@ const staticCitiesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(geoCode.fulfilled, (state, action) => {
-        // console.log(action.payload);
+        console.log(action.payload);
       })
   }
 });
